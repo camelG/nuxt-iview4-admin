@@ -3,8 +3,21 @@
     <!-- <img src="/dahlia-4351122_1920.jpg" class="overflow-hidden" /> -->
     <Card class="my-login pt-3">
       <Input id="loginID" class="mb-2" prefix="ios-contact" v-model="payload.id" required />
-      <Input id="loginPW" class="mb-2" prefix="md-key" v-model="payload.pw" type="password" password />
-      <Button class="mt-3" :disabled="processing" type="primary" @click.prevent="submitForm" long>ログイン</Button>
+      <Input
+        id="loginPW"
+        class="mb-2"
+        prefix="md-key"
+        v-model="payload.pw"
+        type="password"
+        password
+      />
+      <Button
+        class="mt-3"
+        :disabled="processing"
+        type="primary"
+        @click.prevent="submitForm"
+        long
+      >ログイン</Button>
     </Card>
   </div>
 </template>
@@ -13,6 +26,7 @@
 import { loginAuth } from "@/api";
 
 export default {
+  layout: "login",
   data() {
     return {
       payload: { id: "", pw: "" },
@@ -59,8 +73,8 @@ export default {
       //       title: "システムエラー"
       //     });
       //   });
-      
-      this.$router.push("/dashboard");
+
+      this.$router.push("/");
 
       setTimeout(() => {
         this.$set(this, "processing", false);
