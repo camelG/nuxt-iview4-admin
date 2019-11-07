@@ -64,7 +64,7 @@
 export default {
   data() {
     return {
-      isCollapsed: false,
+      isCollapsed: true,
       activeMenu: 1
     };
   },
