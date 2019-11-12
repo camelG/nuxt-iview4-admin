@@ -1,5 +1,8 @@
 <template>
   <div class="mx-1">
+    <div>
+      <PanelGroup />
+    </div>
     <div :style="{display: 'flex'}" class="pr-2">
       <pie-chart id="id0" width="400px" height="400px" class="mx-1" />
       <line-chart id="id1" width="100%" height="400px" class="mx-1" :style="{display: 'relative'}" />
@@ -15,7 +18,7 @@
 </template>
 
 <script>
-import countTo from "vue-count-to";
+import PanelGroup from "@/components/PanelGroup";
 import PieChart from "@/components/charts/Pie";
 import LineChart from "@/components/charts/Line";
 import KeyboardChart from "@/components/charts/Keyboard";
@@ -24,6 +27,7 @@ import SunburstChart from "@/components/charts/Sunburst";
 
 export default {
   components: {
+    PanelGroup,
     PieChart,
     LineChart,
     KeyboardChart,

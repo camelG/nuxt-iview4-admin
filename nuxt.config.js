@@ -24,12 +24,12 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: ['~static/style.css'],
+  css: ["~static/style.css"],
 
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: "~plugins/iview" }],
+  plugins: [{ src: "~plugins/iview" }, { src: "~plugins/bootstrap" }],
 
   /*
    ** Nuxt.js modules

@@ -20,12 +20,19 @@
               :active-name="activeMenu"
               @on-select="selectedMenu"
             >
-              <div class="layout-nav">
-                <MenuItem v-for="m in menu" :key="m.id" :name="m.id">
-                  <Icon :type="m.icon" />
-                  <span>{{ m.name }}</span>
-                </MenuItem>
-              </div>
+              <MenuItem v-for="m in menu" :key="m.id" :name="m.id">
+                <Icon :type="m.icon" />
+                <span>{{ m.name }}</span>
+              </MenuItem>
+              <Dropdown>
+                <Avatar icon="ios-person" />
+                <Icon type="ios-arrow-down" :style="{color: '#fff'}"></Icon>
+                <DropdownMenu slot="list">
+                  <DropdownItem>驴打滚</DropdownItem>
+                  <DropdownItem>炸酱面</DropdownItem>
+                  <DropdownItem>豆汁儿</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </Menu>
           </Col>
         </Row>
