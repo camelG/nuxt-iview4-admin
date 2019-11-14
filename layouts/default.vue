@@ -38,26 +38,6 @@
         </Row>
       </Header>
       <Layout>
-        <Sider
-          ref="side1"
-          v-model="isCollapsed"
-          hide-trigger
-          collapsible
-          :collapsed-width="55"
-          :style="{background: '#fff'}"
-        >
-          <Menu
-            width="auto"
-            :class="menuitemClasses"
-            :active-name="activeMenu"
-            @on-select="selectedMenu"
-          >
-            <MenuItem v-for="m in menu" :key="m.id" :name="m.id">
-              <Icon :type="m.icon" />
-              <span v-if="!isCollapsed">{{ m.name }}</span>
-            </MenuItem>
-          </Menu>
-        </Sider>
         <Layout>
           <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
             <nuxt />
