@@ -1,6 +1,7 @@
 <template>
-  <div class="mx-1">
-    <PanelGroup />
+  <div>
+    <card-group class="mb-2" />
+    <panel-group />
     <keyboard-chart id="id2" height="500px" width="100%" />
     <Row>
       <Col span="6">
@@ -29,6 +30,7 @@
 </template>
 
 <script>
+import CardGroup from "@/components/CardGroup";
 import PanelGroup from "@/components/PanelGroup";
 import PieChart from "@/components/charts/Pie";
 import LineChart from "@/components/charts/Line";
@@ -38,6 +40,7 @@ import SunburstChart from "@/components/charts/Sunburst";
 import { getNews } from "@/api/news";
 export default {
   components: {
+    CardGroup,
     PanelGroup,
     PieChart,
     LineChart,

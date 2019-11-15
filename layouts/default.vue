@@ -6,7 +6,7 @@
           <Col>
             <div class="layout-logo">
               <Icon
-                @click.native="collapsedSider"
+                @click.native="isCollapsed = !isCollapsed"
                 :style="{margin: '0 20px'}"
                 type="md-menu"
                 size="24"
@@ -38,20 +38,33 @@
         </Row>
       </Header>
       <Layout>
-        <Layout>
-          <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
-            <nuxt />
-          </Content>
-        </Layout>
+        <Drawer title="LOGO" placement="left" v-model="isCollapsed">
+          <Menu theme :active-name="activeMenu" @on-select="selectedMenu">
+            <MenuItem
+              v-for="m in menu"
+              :key="m.id"
+              :name="m.id"
+              :style="{fontSize: '18px'}"
+              class="p-2"
+            >
+              <Icon :type="m.icon" />
+              <span>{{ m.name }}</span>
+            </MenuItem>
+          </Menu>
+        </Drawer>
+        <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+          <nuxt />
+        </Content>
       </Layout>
     </Layout>
+    <BackTop />
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      isCollapsed: true,
+      isCollapsed: false,
       activeMenu: 1
     };
   },
@@ -74,9 +87,6 @@ export default {
   methods: {
     selectedMenu(value) {
       this.$set(this, "activeMenu", value);
-    },
-    collapsedSider() {
-      this.$refs.side1.toggleCollapse();
     }
   }
 };
