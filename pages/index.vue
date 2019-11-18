@@ -1,128 +1,111 @@
 <template>
-  <div>
-    <card-group class="mb-2" />
-    <panel-group />
-    <keyboard-chart id="id2" height="500px" width="100%" />
-    <Row>
-      <Col span="6">
-        <pie-chart id="id0" width="400px" height="400px" class="mx-1" />
-        <pie-chart width="400px" height="400px" class="mx-1" />
-      </Col>
-      <Col>
-        <Table ref="table" :columns="fields" :data="news" />
-      </Col>
-    </Row>
-    <Row>
-      <Col span="12">
-        <line-chart
-          id="id1"
-          width="auto"
-          height="400px"
-          class="mx-1"
-          :style="{display: 'relative'}"
-        />
-      </Col>
-      <Col span="12">
-        <mix-chart id="id3" width="auto" height="500px" class="mx-1" />
-      </Col>
-    </Row>
+  <div id="bg-image">
+    <!-- <img src="/dahlia-4351122_1920.jpg" class="overflow-hidden" /> -->
+    <Card class="my-login pt-3">
+      <Input
+        id="loginID"
+        prefix="ios-contact"
+        v-model="payload.id"
+        :style="{margin: '10px auto'}"
+        required
+      />
+      <Input
+        id="loginPW"
+        prefix="md-key"
+        v-model="payload.pw"
+        type="password"
+        :style="{marginBottom: '20px'}"
+        password
+      />
+      <Button :disabled="processing" type="primary" @click.prevent="submitForm" long>ログイン</Button>
+    </Card>
   </div>
 </template>
 
 <script>
-import CardGroup from "@/components/CardGroup";
-import PanelGroup from "@/components/PanelGroup";
-import PieChart from "@/components/charts/Pie";
-import LineChart from "@/components/charts/Line";
-import KeyboardChart from "@/components/charts/Keyboard";
-import MixChart from "@/components/charts/MixChart";
-import SunburstChart from "@/components/charts/Sunburst";
-import { getNews } from "@/api/news";
+import { loginAuth } from "@/api";
+
 export default {
-  components: {
-    CardGroup,
-    PanelGroup,
-    PieChart,
-    LineChart,
-    KeyboardChart,
-    MixChart,
-    SunburstChart
-  },
+  layout: "login",
   data() {
     return {
-      news: [],
-      fields: [
-        {
-          key: "id",
-          title: "#",
-          width: 52,
-          render: (h, { index }) => {
-            return h("span", index + 1);
-          }
-        },
-        {
-          key: "title",
-          sortable: true,
-          title: "Title",
-          render: (h, { row }) => {
-            return h("span", [
-              h("Avatar", {
-                props: {
-                  src: row.urlToImage,
-                  size: "small"
-                },
-                style: {
-                  marginRight: "5px"
-                }
-              }),
-              h(
-                "a",
-                {
-                  attrs: { href: row.url, target: "_blank", class: "mr-2" }
-                },
-                row.title
-              )
-            ]);
-          }
-        },
-        {
-          key: "source",
-          title: "Source",
-          width: 200,
-          render: (h, { row }) => {
-            return h("div", row.source.name);
-          }
-        },
-        {
-          key: "author",
-          title: "Author",
-          width: 150,
-          render: (h, { row }) => {
-            return h("div", row.author && row.author.slice(0, 15));
-          }
-        },
-        {
-          key: "publishedAt",
-          sortable: true,
-          title: "Created",
-          width: 200
-        }
-      ]
+      payload: { id: "", pw: "" },
+      error: false,
+      processing: false
     };
   },
-  mounted() {
-    getNews().then(data => {
-      console.log(data);
-      this.news = data && data.articles;
-    });
+  computed: {
+    loginID() {
+      return this.payload.id;
+    },
+    password() {
+      return this.payload.pw;
+    }
   },
   methods: {
-    exportCsv() {
-      this.$refs.table.exportCsv({
-        filename: "Sorting and filtering data",
-        original: false
-      });
+    submitForm() {
+      if (!this.loginID || !this.password) {
+        this.error = true;
+        setTimeout(() => {
+          this.error = false;
+        }, 1000);
+        return;
+      }
+
+      this.processing = true;
+
+      // loginAuth(this.payload)
+      //   .then(data => {
+      //     if (data.result === true) {
+      //       // data
+      //       console.log(data)
+      //     } else {
+      //       return this.$Notice.error({
+      //         title: "ログインIDまたはパスワードが一致しません"
+      //       });
+      //     }
+
+      //     this.$router.push("/dashboard");
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //     return this.$Notice.error({
+      //       title: "システムエラー"
+      //     });
+      //   });
+
+      this.$router.push("/dashboard");
+
+      setTimeout(() => {
+        this.$set(this, "processing", false);
+      }, 500);
     }
   }
 };
 </script>
+
+<style scoped>
+#bg-image {
+  background-image: url("/img/bg.jpg");
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+}
+.my-login,
+.my-login input {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+.my-login {
+  max-width: 280px;
+  width: 100%;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 40%;
+}
+.content {
+  position: fixed;
+  bottom: 0;
+  max-width: 258px;
+}
+</style>

@@ -1,12 +1,12 @@
 <template>
-  <div class="card" style="height: 80px">
-    <div class="row no-gutters">
-      <div class="col">
+  <div :style="{border: '1px solid #ccc',height: '80px'}">
+    <Row align="middle" :style="{height: '80px'}">
+      <Col span="12">
         <svg
+          :style="{fontSize: '28px',height: '78px'}"
           class="rounded-left font-weight-bold"
-          :style="{fontSize: '28px'}"
           width="100%"
-          height="78px"
+          height="100%"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="xMidYMid slice"
           focusable="false"
@@ -21,13 +21,11 @@
             fill="#fff"
           >{{ title }}</text>
         </svg>
-      </div>
-      <div class="col my-auto">
-        <center>
-          <count-to :endVal="number" class="font-weight-bold" :style="{fontSize: '28px'}" />
-        </center>
-      </div>
-    </div>
+      </Col>
+      <Col span="12" :style="{textAlign: 'center', paddingTop:'15px'}">
+        <count-to :endVal="number" :style="{fontSize: '28px'}" />
+      </Col>
+    </Row>
   </div>
 </template>
 

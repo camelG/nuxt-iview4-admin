@@ -20,7 +20,7 @@
               :active-name="activeMenu"
               @on-select="selectedMenu"
             >
-              <MenuItem v-for="m in menu" :key="m.id" :name="m.id">
+              <MenuItem v-for="m in menu" :key="m.id" :name="m.id" :to="m.to">
                 <Icon :type="m.icon" />
                 <span>{{ m.name }}</span>
               </MenuItem>
@@ -39,11 +39,12 @@
       </Header>
       <Layout>
         <Drawer title="LOGO" placement="left" v-model="isCollapsed">
-          <Menu theme :active-name="activeMenu" @on-select="selectedMenu">
+          <Menu :active-name="activeMenu" @on-select="selectedMenu">
             <MenuItem
               v-for="m in menu"
               :key="m.id"
               :name="m.id"
+              :to="m.to"
               :style="{fontSize: '18px'}"
               class="p-2"
             >
@@ -77,16 +78,18 @@ export default {
     },
     menu() {
       return [
-        { id: 1, name: "Dashboard", icon: "md-analytics" },
-        { id: 2, name: "Management", icon: "ios-card" },
-        { id: 3, name: "Stock", icon: "ios-apps" },
-        { id: 4, name: "User", icon: "ios-people" }
+        { id: 1, name: "Dashboard", to: "/dashboard", icon: "md-analytics" },
+        { id: 2, name: "Manage", to: "/manage", icon: "ios-card" },
+        { id: 3, name: "Stock", to: "/stock", icon: "ios-apps" },
+        { id: 4, name: "User", to: "/user", icon: "ios-people" }
       ];
     }
   },
   methods: {
     selectedMenu(value) {
       this.$set(this, "activeMenu", value);
+      console.log(value);
+      // this.$router.push("/dashboard");
     }
   }
 };

@@ -29,7 +29,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: "~plugins/iview" }, { src: "~plugins/bootstrap" }],
+  plugins: [{ src: "~plugins/iview" }],
 
   /*
    ** Nuxt.js modules
