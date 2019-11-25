@@ -9,10 +9,10 @@
     <Col span="3" :style="{paddingLeft: '7px'}">
       <Anchor show-ink>
         <AnchorLink
-          v-for="(u,index) in uniqDate"
+          v-for="(item,index) in items"
           :key="index"
-          :href="'#date-' + u.date"
-          :title="u.date"
+          :href="'#date-' + item.date + item.name"
+          :title="item.date && item.date.slice(-5)+ ' ' + item.name"
         />
       </Anchor>
     </Col>
@@ -32,20 +32,13 @@ export default {
         {
           title: "Date",
           key: "date",
-          sortable: true,
-          sortType: "desc",
           render: (h, params) => {
             return h("div", [
               h(
                 "div",
                 {
                   attrs: {
-                    id:
-                      params.row.date ===
-                        this.items[Number(params.index) - 1] &&
-                      this.items[Number(params.index) - 1].date
-                        ? ""
-                        : "date-" + params.row.date
+                    id: "date-" + params.row.date + params.row.name
                   }
                 },
                 params.row.date
@@ -67,464 +60,160 @@ export default {
           key: "address"
         }
       ],
-      items: [
-        {
-          name: "Johnn",
-          age: 18,
-          address: "New York No. 1 Lake Park",
-          date: "2016-10-03"
-        },
-        {
-          name: "Jim Greenx",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Blacks",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Greenxx",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Blacka",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snoww",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Greenq",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Blackw",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snoww",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green5",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 2600,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        }
-      ]
+      items: sortBy(
+        [
+          {
+            date: "2019-11-01",
+            name: "John Brown",
+            age: 18,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-01",
+            name: "Jim Green",
+            age: 24,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-01",
+            name: "Joe Black",
+            age: 30,
+            address: "Sydney No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-01",
+            name: "Jon Snow",
+            age: 26,
+            address: "Ottawa No. 2 Lake Park"
+          },
+
+          {
+            date: "2019-11-02",
+            name: "John Brown",
+            age: 18,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-02",
+            name: "Jim Green",
+            age: 24,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-03",
+            name: "Joe Black",
+            age: 30,
+            address: "Sydney No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-04",
+            name: "Jon Snow",
+            age: 26,
+            address: "Ottawa No. 2 Lake Park"
+          },
+
+          {
+            date: "2019-11-11",
+            name: "John Brown",
+            age: 18,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-13",
+            name: "Jim Green",
+            age: 24,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-18",
+            name: "Joe Black",
+            age: 30,
+            address: "Sydney No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-20",
+            name: "Jon Snow",
+            age: 26,
+            address: "Ottawa No. 2 Lake Park"
+          },
+
+          {
+            date: "2019-11-21",
+            name: "John Brown",
+            age: 18,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-21",
+            name: "Jim Green",
+            age: 24,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-21",
+            name: "Joe Black",
+            age: 30,
+            address: "Sydney No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-22",
+            name: "Jon Snow",
+            age: 26,
+            address: "Ottawa No. 2 Lake Park"
+          },
+
+          {
+            date: "2019-11-22",
+            name: "John Brown",
+            age: 18,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-22",
+            name: "Jim Green",
+            age: 24,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-23",
+            name: "Joe Black",
+            age: 30,
+            address: "Sydney No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-23",
+            name: "Jon Snow",
+            age: 26,
+            address: "Ottawa No. 2 Lake Park"
+          },
+
+          {
+            date: "2019-11-24",
+            name: "John Brown",
+            age: 18,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-25",
+            name: "Jim Green",
+            age: 24,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-25",
+            name: "Joe Black",
+            age: 30,
+            address: "Sydney No. 1 Lake Park"
+          },
+          {
+            date: "2019-11-26",
+            name: "Jon Snow",
+            age: 26,
+            address: "Ottawa No. 2 Lake Park"
+          },
+        ],
+        "date"
+      ).reverse()
     };
   },
   computed: {
