@@ -47,6 +47,7 @@
               :to="m.to"
               :style="{fontSize: '18px'}"
               class="p-2"
+              @click.native="isCollapsed=false"
             >
               <Icon :type="m.icon" />
               <span>{{ m.name }}</span>
