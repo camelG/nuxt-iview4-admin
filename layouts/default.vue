@@ -1,69 +1,28 @@
 <template>
   <div>
     <Layout>
-      <Header>
-        <Row type="flex">
-          <Col>
-            <div class="layout-logo">
-              <Icon
-                @click.native="isCollapsed = !isCollapsed"
-                :style="{margin: '0 20px'}"
-                type="md-menu"
-                size="24"
-              ></Icon>LOGO
-            </div>
-          </Col>
-          <Col :style="{marginLeft: 'auto'}">
-            <Menu
-              mode="horizontal"
-              theme="dark"
-              :active-name="activeMenu"
-              @on-select="selectedMenu"
-            >
-              <MenuItem v-for="m in menu" :key="m.id" :name="m.id" :to="m.to">
-                <Icon :type="m.icon" />
-                <span>{{ m.name }}</span>
-              </MenuItem>
-              <Dropdown>
-                <Avatar icon="ios-person" />
-                <Icon type="ios-arrow-down" :style="{color: '#fff'}"></Icon>
-                <DropdownMenu slot="list">
-                  <DropdownItem>驴打滚</DropdownItem>
-                  <DropdownItem>炸酱面</DropdownItem>
-                  <DropdownItem>豆汁儿</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </Menu>
-          </Col>
-        </Row>
-      </Header>
+      <top-nav />
       <Layout>
-        <Drawer title="LOGO" placement="left" v-model="isCollapsed">
-          <Menu :active-name="activeMenu" @on-select="selectedMenu">
-            <MenuItem
-              v-for="m in menu"
-              :key="m.id"
-              :name="m.id"
-              :to="m.to"
-              :style="{fontSize: '18px'}"
-              class="p-2"
-              @click.native="isCollapsed=false"
-            >
-              <Icon :type="m.icon" />
-              <span>{{ m.name }}</span>
-            </MenuItem>
-          </Menu>
-        </Drawer>
+        <left-side-menu />
         <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
           <nuxt />
         </Content>
       </Layout>
     </Layout>
+    <div :style="{position: 'fixed', right: '25px', bottom: '70px'}">
+      <Avatar icon="md-nutrition" size="60" :style="{background: 'tomato'}" />
+    </div>
     <BackTop />
   </div>
 </template>
 <script>
+import TopNav from "@/components/TopNav";
+import LeftSideMenu from "@/components/LeftSideMenu";
 export default {
+  components: {
+    TopNav,
+    LeftSideMenu
+  },
   data() {
     return {
       isCollapsed: false,

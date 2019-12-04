@@ -1,6 +1,6 @@
 import Vue from "vue";
 import axios from "axios";
-import store from "@/store";
+// import store from "@/store";
 
 const service = axios.create({
   baseURL: process.env.MIX_BASE_API,
@@ -9,8 +9,8 @@ const service = axios.create({
 
 service.interceptors.request.use(
   config => {
-    const token = store.state.auth.token;
-    const user_id = store.state.auth.user && store.state.auth.user.user_id;
+    // const token = store.state.auth.token;
+    // const user_id = store.state.auth.user && store.state.auth.user.user_id;
 
     if (token) config.headers["Authorization"] = token;
     if (user_id) config.headers["Userid"] = user_id;

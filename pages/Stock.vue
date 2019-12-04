@@ -1,18 +1,14 @@
 <template>
   <div>
     <Row>
-      <Col>
-      </Col>
+      <Col></Col>
     </Row>
   </div>
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {};
 </script>
 
 <style lang="scss" scoped>
-
 </style>
