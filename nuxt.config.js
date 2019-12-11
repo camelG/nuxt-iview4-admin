@@ -36,7 +36,8 @@ module.exports = {
    */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    "@nuxtjs/axios"
+    "@nuxtjs/axios",
+    "@nuxtjs/auth"
   ],
   /*
    ** Axios module configuration
@@ -44,7 +45,40 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
-
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: "/api/auth/login",
+            method: "post",
+            propertyName: "token"
+          },
+          logout: { url: "/api/auth/logout", mehtod: "post" },
+          user: { url: "/api/auth/user", method: "get", propertyName: "user" }
+        },
+        tokenRequired: true,
+        tokenName: "Authorization",
+        tokenType: "Bearer"
+      },
+      facebook: {
+        client_id: process.env.FACEBOOK_CLIENT_ID,
+        userinfo_endpoint:
+          "https://graph.facebook.com/v2.12/me?fields=about,name,picture{url},email,birthday",
+        scope: ["public_profile", "email", "user_birthday"]
+      },
+      google: {
+        client_id: process.env.GOOGLE_CLIENT_ID
+      },
+      github: {
+        client_id: process.env.GITHUB_CLIENT_ID,
+        client_secret: process.env.GITHUB_CLIENT_SECRET
+      },
+      twitter: {
+        client_id: process.env.TWITTER_CLIENT_ID
+      }
+    }
+  },
   /*
    ** Build configuration
    */

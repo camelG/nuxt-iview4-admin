@@ -51,8 +51,19 @@ export default {
         }, 1000);
         return;
       }
-
       this.processing = true;
+      return this.$auth.loginWith("google");
+
+      return this.$auth
+        .loginWith("local", {
+          data: {
+            username: this.username,
+            password: this.password
+          }
+        })
+        .then(data => {
+          console.log(data);
+        });
 
       // loginAuth(this.payload)
       //   .then(data => {
