@@ -50,7 +50,7 @@ module.exports = {
       local: {
         endpoints: {
           login: {
-            url: LOCAL_LOGIN_ENDPOINT,
+            url: process.env.LOCAL_LOGIN_ENDPOINT,
             method: "post",
             propertyName: "token"
           },
